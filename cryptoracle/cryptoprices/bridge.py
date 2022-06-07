@@ -14,3 +14,14 @@ def get_prices(coins):
     for coin in prices:
         ret_prices[coin] = prices[coin]['usd']
     return ret_prices
+
+def get_available_coins():
+    cg = CoinGeckoAPI()
+    coins = cg.get_coins_list()
+    return coins
+
+# date format: dd-mm-yyyy
+def get_coin_history(coin, date):
+    cg = CoinGeckoAPI()
+    history = cg.get_coin_history_by_id(coin, date, localization='false')
+    return history['market_data']['current_price']['usd']

@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .bridge import get_price
-from .bridge import get_prices
+from .bridge import *
 
 # Create your views here.
 def home(request):
-    prices = get_prices('bitcoin,ethereum')
-    print(prices)
+    # print(get_available_coins())
+    print(get_coin_history('bitcoin', '07-06-2022'))
     return HttpResponse('Done!')
