@@ -23,5 +23,6 @@ def get_available_coins():
 # date format: dd-mm-yyyy
 def get_coin_history(coin, date):
     cg = CoinGeckoAPI()
+    # TODO: Check if localization=false is working - Should exclude localized languages in response
     history = cg.get_coin_history_by_id(coin, date, localization='false')
     return history['market_data']['current_price']['usd']
