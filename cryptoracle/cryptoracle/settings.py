@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'twittersearch',
+    'cryptoprices',
 ]
 
 MIDDLEWARE = [

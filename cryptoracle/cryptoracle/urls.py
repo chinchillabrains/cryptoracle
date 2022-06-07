@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from twittersearch import views as twitter
+from cryptoprices import views as crypto
 
 urlpatterns = [
-    path('', twitter.home),
+    path('twitter/', twitter.home),
+    path('crypto/', crypto.home),
     path('admin/', admin.site.urls),
 ]
