@@ -2,10 +2,11 @@
 import os
 import requests
 
-def get_tweets(search_term):
+def get_tweets(search_term, max_results=10, next_token=None):
+    next_page_query = '&next_token=' + next_token if next_token is not None else ''
     # query = 'https://api.twitter.com/2/tweets/search/recent?query={} lang:en -is:retweet&max_results=10'.format(search_term)
     # Do we need requests.utils.quote to format request before sending?
-    query = 'https://api.twitter.com/2/tweets/search/recent?query={} lang:en -is:retweet&max_results=10'.format(requests.utils.quote(search_term))
+    query = 'https://api.twitter.com/2/tweets/search/recent?query={} lang:en -is:retweet&max_results={}{}'.format(requests.utils.quote(search_term), max_results, next_page_query)
     return twitter_request(query)
 
 # Returns tweet counts for search_term in the last 7 days in 1-hour intervals
