@@ -17,7 +17,9 @@ def search_tweets(keyword):
         tweetText = re.sub(r"https?\:[\w_\-\/\.]+", '', tweetText)
         clean_tweets.append(tweetText)
 
-    return clean_tweets
+    next_token = clean_tweets['meta'].get('next_token', None)
+
+    return {'tweets': clean_tweets, 'next_token': next_token}
 
 def count_tweets(keyword):
     recent_tweet_counts = bridge.get_tweet_counts(keyword)
