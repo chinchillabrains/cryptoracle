@@ -2,7 +2,7 @@
 import os
 import requests
 
-def get_tweets(search_term, max_results=10, next_token=None):
+def get_tweets(search_term, max_results='10', next_token=None):
     next_page_query = '&next_token=' + next_token if next_token is not None else ''
     # query = 'https://api.twitter.com/2/tweets/search/recent?query={} lang:en -is:retweet&max_results=10'.format(search_term)
     # Do we need requests.utils.quote to format request before sending?

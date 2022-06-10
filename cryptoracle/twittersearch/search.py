@@ -3,8 +3,8 @@
 import re
 from . import bridge
 
-def search_tweets(keyword):
-    recent_tweets = bridge.get_tweets(keyword)
+def search_tweets(keyword, next_token=None):
+    recent_tweets = bridge.get_tweets(keyword, 10, next_token)
     clean_tweets = []
     for tweet in recent_tweets['data']:
         # Replace newline with space
@@ -17,7 +17,7 @@ def search_tweets(keyword):
         tweetText = re.sub(r"https?\:[\w_\-\/\.]+", '', tweetText)
         clean_tweets.append(tweetText)
 
-    next_token = clean_tweets['meta'].get('next_token', None)
+    next_token = recent_tweets['meta'].get('next_token', None)
 
     return {'tweets': clean_tweets, 'next_token': next_token}
 
