@@ -4,6 +4,6 @@ from .bridge import *
 
 # Create your views here.
 def home(request):
-    # print(get_available_coins())
-    print(get_coin_history('bitcoin', '07-06-2022'))
+    # coins = get_available_coins()
+    # print(get_coin_history('bitcoin', '07-06-2022'))
     return HttpResponse('Done!')
