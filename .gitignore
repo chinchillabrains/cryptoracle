@@ -1,0 +1,5 @@
+about/
+cryptoracle/env/
+**/__pycache__/
+**/**/__pycache__/
+cryptoracle/db.sqlite3
