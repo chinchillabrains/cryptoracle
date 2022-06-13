@@ -18,3 +18,12 @@ def twitter_request(query):
     bearer_token = os.environ.get('TWITTER_BEARER_TOKEN')
     result = requests.get(query, headers={"Authorization": "Bearer " + bearer_token})
     return result.json()
+
+def get_user(username):
+    query = 'https://api.twitter.com/2/users/by/username/{}'.format(username)
+    return twitter_request(query)
+
+def get_user_tweets(user_id, max_results='10'):
+    # start_time, end_time (YYYY-MM-DDTHH:mm:ssZ)
+    query = 'https://api.twitter.com/2/users/{}/tweets?max_results={}&exclude=retweets,replies&tweet.fields=created_at'.format(user_id, max_results)
+    return twitter_request(query)
