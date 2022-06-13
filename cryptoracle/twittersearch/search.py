@@ -24,3 +24,12 @@ def search_tweets(keyword, next_token=None):
 def count_tweets(keyword):
     recent_tweet_counts = bridge.get_tweet_counts(keyword)
     return recent_tweet_counts['data']
+
+def search_user_tweets(username):
+    user = bridge.get_user(username)
+    user_id = user['data'].get('id', None)
+    if user_id == None:
+        return []
+    
+    tweets = bridge.get_user_tweets(user_id, '100')
+    return tweets['data']
