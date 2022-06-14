@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'twittersearch',
     'cryptoprices',
+    'tweetsentiments',
 ]
 
 MIDDLEWARE = [
