@@ -17,8 +17,8 @@ class Crypto(models.Model):
     # - crypto (foreign key)
     # - date
     # - price
-    # - currency (Add later. Work with bitcoin for start)
+    # - currency (Add later. Work with USD for start)
 class Prices(models.Model):
     crypto  = models.ForeignKey(Crypto, on_delete=models.CASCADE)
     date    = models.DateField()
-    price   = models.DecimalField(max_digits=10, decimal_places=10) # Just to be safe
+    price   = models.DecimalField(max_digits=20, decimal_places=12) # Just to be safe
