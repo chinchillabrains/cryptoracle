@@ -5,7 +5,7 @@ import re
 from . import bridge
 
 def search_tweets(keyword, next_token=None, start_time=None, end_time=None):
-    recent_tweets = bridge.get_tweets(keyword, 10, next_token, start_time, end_time)
+    recent_tweets = bridge.get_tweets(keyword, 100, next_token, start_time, end_time)
     try:
         tweet_count = recent_tweets['meta'].get('result_count', 0)
     except KeyError:
