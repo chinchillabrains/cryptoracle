@@ -1,10 +1,20 @@
 # interface to use twittersearch package
 # get input and return tweets & tweet volume using bridge.py
+import datetime
 import re
 from . import bridge
 
-def search_tweets(keyword, next_token=None):
-    recent_tweets = bridge.get_tweets(keyword, 10, next_token)
+def search_tweets(keyword, next_token=None, start_time=None, end_time=None):
+    recent_tweets = bridge.get_tweets(keyword, 10, next_token, start_time, end_time)
+    try:
+        tweet_count = recent_tweets['meta'].get('result_count', 0)
+    except KeyError:
+        print(recent_tweets)
+        return {'tweets': [], 'next_token': None}
+
+    if tweet_count == 0:
+        return {'tweets': [], 'next_token': None}
+
     clean_tweets = []
     for tweet in recent_tweets['data']:
         # Replace newline with space
@@ -20,6 +30,13 @@ def search_tweets(keyword, next_token=None):
     next_token = recent_tweets['meta'].get('next_token', None)
 
     return {'tweets': clean_tweets, 'next_token': next_token}
+
+def get_yesterdays_tweets(keyword, next_token=None):
+    yesterday = datetime.datetime.today() - datetime.timedelta(1)
+    yesterday_from = yesterday.strftime('%Y-%m-%dT00:00:00Z')
+    yesterday_to = yesterday.strftime('%Y-%m-%dT23:59:59Z')
+    return search_tweets(keyword, next_token, yesterday_from, yesterday_to)
+
 
 def count_tweets(keyword):
     recent_tweet_counts = bridge.get_tweet_counts(keyword)
