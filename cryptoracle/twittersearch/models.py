@@ -8,7 +8,11 @@ from cryptoprices.models import Crypto
 # keyword
 # Temporarily save batches of tweets to get sentiment later & delete
 class Tweets(models.Model):
-    date = models.DateField()
+    date    = models.DateField()
     keyword = models.ForeignKey(Crypto, on_delete=models.CASCADE)
-    tweets = BatchedValuesField(token='-splitweets-') # Something unique as token to split tweets
+    tweets  = BatchedValuesField(token='-splitweets-') # Something unique as token to split tweets
 
+class Tweetcounts(models.Model):
+    date    = models.DateField()
+    keyword = models.ForeignKey(Crypto, on_delete=models.CASCADE)
+    count   = models.IntegerField()
