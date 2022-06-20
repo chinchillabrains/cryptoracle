@@ -18,8 +18,10 @@ def get_tweets(search_term, max_results='10', next_token=None, start_time=None, 
     return twitter_request(query)
 
 # Returns tweet counts for search_term in the last 7 days in 1-hour intervals
-def get_tweet_counts(search_term):
-    query = 'https://api.twitter.com/2/tweets/counts/recent?query={} lang:en -is:retweet'.format(search_term)
+def get_tweet_counts(search_term, start_time=None, end_time=None):
+    start_time_query = '&start_time=' + start_time if start_time is not None else ''
+    end_time_query = '&end_time=' + end_time if end_time is not None else ''
+    query = 'https://api.twitter.com/2/tweets/counts/recent?query={} lang:en -is:retweet{}{}'.format(search_term, start_time_query, end_time_query)
     return twitter_request(query)
 
 def twitter_request(query):
