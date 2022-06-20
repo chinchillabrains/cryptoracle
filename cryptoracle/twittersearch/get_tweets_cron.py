@@ -2,8 +2,10 @@ import datetime
 from twittersearch.search import get_yesterdays_tweets
 from twittersearch.search import get_yesterdays_tweet_counts
 from twittersearch.models import Tweets
+from twittersearch.models import Tweetcounts
+from cryptoprices.models import Crypto
 
-def get_tweets(keyword):
+def gather_tweets(keyword):
     next_token = ''
     yesterday = (datetime.datetime.today() - datetime.timedelta(1)).strftime('%Y-%m-%d')
     while next_token != None:
