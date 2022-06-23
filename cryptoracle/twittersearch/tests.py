@@ -34,6 +34,17 @@ class TwitterBridgeTests(TestCase):
                     },
                 },
                 'out': 'https://api.twitter.com/2/tweets/search/recent?query="bitcoin" lang:en -is:retweet&max_results=10&next_token=asyS_A_ASGDH&start_time=2022-08-19&end_time=2022-08-17'
+            },
+            {
+                'in': {
+                    'service': 'counts-recent',
+                    'term': 'bitcoin',
+                    'params': {
+                        'start_time': '2022-08-19',
+                        'end_time': '2022-08-17',
+                    },
+                },
+                'out': 'https://api.twitter.com/2/tweets/counts/recent?query="bitcoin" lang:en -is:retweet&start_time=2022-08-19&end_time=2022-08-17'
             }
         ]
         bridge = Bridge()
