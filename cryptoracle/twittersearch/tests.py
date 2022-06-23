@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from .bridgeoo import Bridge
 
 class TwitterBridgeTests(TestCase):
@@ -19,8 +20,28 @@ class TwitterBridgeTests(TestCase):
 
 
 
-    # def test_build_query():
-    #     pass
+    def test_build_query(self):
+        inputOutput = [
+            {
+                'in': {
+                    'service': 'search-recent',
+                    'term': 'bitcoin',
+                    'params': {
+                        'max_results': '10',
+                        'next_token': 'asyS_A_ASGDH',
+                        'start_time': '2022-08-19',
+                        'end_time': '2022-08-17',
+                    },
+                },
+                'out': 'https://api.twitter.com/2/tweets/search/recent?query="bitcoin" lang:en -is:retweet&max_results=10&next_token=asyS_A_ASGDH&start_time=2022-08-19&end_time=2022-08-17'
+            }
+        ]
+        bridge = Bridge()
+        for testCases in inputOutput:
+            query = bridge.build_query(service = testCases['in']['service'], term = testCases['in']['term'], params = testCases['in']['params'])
+            self.assertEquals(query, testCases['out'])
+
+        
     
     # def get_tweets():
     #     pass

@@ -18,7 +18,7 @@ class Bridge:
         service_base = self.get_service_url(service)
         keyword_query = '?query="{}" lang:en -is:retweet'.format(term)
         params_str = '&'.join('{}={}'.format(key, params[key]) for key in params.keys())
-        full_query = '{}{}{}{}'.format(api_base, service_base, keyword_query, params_str)
+        full_query = '{}{}{}&{}'.format(api_base, service_base, keyword_query, params_str)
         return full_query
 
 
