@@ -6,8 +6,9 @@ from . import bridge
 from .bridgeoo import Bridge
 
 def search_tweets(keyword, next_token=None, start_time=None, end_time=None):
+    params = {'max_results': '100', 'next_token': next_token, 'start_time' : start_time, 'end_time': end_time}
     bridgeoo = Bridge()
-    recent_tweets = bridgeoo.get_tweets(term=keyword, params={'max_results': '100', 'next_token': next_token, 'start_time' : start_time, 'end_time': end_time})
+    recent_tweets = bridgeoo.get_tweets(term=keyword, params=params)
     try:
         tweet_count = recent_tweets['meta'].get('result_count', 0)
     except KeyError:
