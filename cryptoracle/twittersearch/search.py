@@ -3,9 +3,11 @@
 import datetime
 import re
 from . import bridge
+from .bridgeoo import Bridge
 
 def search_tweets(keyword, next_token=None, start_time=None, end_time=None):
-    recent_tweets = bridge.get_tweets(keyword, 100, next_token, start_time, end_time)
+    bridgeoo = Bridge()
+    recent_tweets = bridgeoo.get_tweets(term=keyword, params={'max_results': '100', 'next_token': next_token, 'start_time' : start_time, 'end_time': end_time})
     try:
         tweet_count = recent_tweets['meta'].get('result_count', 0)
     except KeyError:

@@ -7,8 +7,8 @@ class Bridge:
     def __init__(self):
         pass
 
-    def get_tweets(self, service='search-recent', term='', params={}):
-        query = self.build_query(service, term, params)
+    def get_tweets(self, term='', params={}):
+        query = self.build_query(service='search-recent', term=term, params=params)
         result = self.api_get(query)
         return result
 
