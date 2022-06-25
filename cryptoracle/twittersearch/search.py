@@ -44,7 +44,8 @@ def get_yesterdays_tweet_counts(keyword):
     yesterday = datetime.datetime.today() - datetime.timedelta(1)
     yesterday_from = yesterday.strftime('%Y-%m-%dT00:00:00Z')
     yesterday_to = yesterday.strftime('%Y-%m-%dT23:59:59Z')
-    recent_tweet_counts = bridge.get_tweet_counts(keyword, yesterday_from, yesterday_to)
+    bridgeoo = Bridge()
+    recent_tweet_counts = bridgeoo.get_tweet_counts(term=keyword, params={'start_time': yesterday_from, 'end_time': yesterday_to})
     return recent_tweet_counts['meta']['total_tweet_count']
 
 def count_tweets(keyword):
