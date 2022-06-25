@@ -48,7 +48,8 @@ def get_yesterdays_tweet_counts(keyword):
     return recent_tweet_counts['meta']['total_tweet_count']
 
 def count_tweets(keyword):
-    recent_tweet_counts = bridge.get_tweet_counts(keyword)
+    bridgeoo = Bridge()
+    recent_tweet_counts = bridgeoo.get_tweet_counts(term=keyword)
     return recent_tweet_counts['data']
 
 def search_user_tweets(username):
