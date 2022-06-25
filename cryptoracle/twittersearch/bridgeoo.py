@@ -12,8 +12,10 @@ class Bridge:
         result = self.api_get(query)
         return result
 
-    def get_tweet_counts(self):
-        pass
+    def get_tweet_counts(self, term='', params={}):
+        query = self.build_query(service='counts-recent', term=term, params=params)
+        result = self.api_get(query)
+        return result
 
     def build_query(self, service='search-recent', term='', params={}):
         api_base = 'https://api.twitter.com/2/'
