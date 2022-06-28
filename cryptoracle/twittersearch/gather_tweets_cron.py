@@ -7,6 +7,12 @@ from twittersearch.models import Tweetcounts
 from cryptoprices.models import Crypto
 
 def gather_tweets(keyword):
+    try:
+        crypto_search = Crypto.objects.get(id=keyword)
+    except Crypto.DoesNotExist:
+        # Don't continue if keyword is not in our crypto list
+        return
+
     next_token = ''
     yesterday = (datetime.datetime.today() - datetime.timedelta(1)).strftime('%Y-%m-%d')
     while next_token != None:
@@ -16,7 +22,7 @@ def gather_tweets(keyword):
         next_token = response['next_token']
         if len(tweets) > 0:
             # Save to db
-            Tweets.objects.create(date = yesterday, tweets = tweets)
+            Tweets.objects.create(date = yesterday, crypto = crypto_search, tweets = tweets)
 
 def gather_tweet_counts(past_days = 1):
     selected_date = datetime.datetime.today() - datetime.timedelta(past_days)
